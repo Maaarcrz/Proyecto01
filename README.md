@@ -7,6 +7,6 @@ Reservas Casal
   Se han utilizado los siguientes lenguajes: PHP,SQL,HTML,CSS,JS.
   
 #Curriculums:
-  Jaime Carcedo Galindo: 
-  Marc Paradell: 
-  Elio Rojas Gómez: 
+  Jaime Carcedo Galindo: https://jaimecll.github.io
+  Marc Paradell: https://Maaarcrz.github.io
+  Elio Rojas Gómez: https://importantelio.github.io
