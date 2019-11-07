@@ -12,11 +12,6 @@
     <!-- Tabs Titles -->
     <h2 class="active"> Log In </h2>
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="./img/icon_user.png" id="icon" alt="User Icon" />
-    </div>
-
     <!-- Login Form -->
     <form action="./services/login.proc.php" method="REQUEST" enctype="multipart/form-data" onsubmit="return validacionFormulario()">
       <input type="text" class="fadeIn second" name="user" id="user" placeholder="Usuario" value="<?php if (isset($_REQUEST['us'])){

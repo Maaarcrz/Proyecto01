@@ -30,20 +30,29 @@
  	</header>
 
 	<div class="div_img">
-		<h1 style="color:white; position: absolute; margin-left: 43%">Casal de verano</h1>
 		<img src="./img/banner.jpg" class="imagen">
 	</div>
 
 	<?php
 	include "./services/conexion.php";
 	//Mostrar registros
-	$result=mysqli_query($conn,"SELECT * FROM tbl_recurso");
+	//SELECT DE LA TABLA TIPO RECURSOS
+	$result=mysqli_query($conn,"SELECT * FROM tbl_tipus_recurso inner join tbl_recurso on tbl_recurso.id_tipo_recurso=tbl_tipus_recurso.id_tipo_recurso");
+	echo "<br><br>";
 	while($objeto=mysqli_fetch_array($result)){
-		echo "<h4>".$objeto['nombre_recurso']."</h4>";
-		echo "<p>".$objeto['estado']."</p>";
-		echo "<p>".$objeto['Descripcion']."</p>";
-		echo '<img height="195px;" style="border: 2px solid #221821;" src="./img/recursos/'.$objeto['Imagen'].'">';
+		//Imagen de fondo en el DIV
+		echo '<div class="contenedor_registros" style="background-repeat: no-repeat; background-size: 100%; background-image: url(./img/recursos/'.$objeto['imagen_tipo_recurso'].');">';
+		$consulta="Select * From tbl_recurso where id_tipo_recurso=".$objeto['id_tipo_recurso']." and estado='disponible'";
+		$disponibilidad=mysqli_query($conn,$consulta);
+		if (!empty($disponibilidad) && mysqli_num_rows($disponibilidad)>0) {
+			echo "<p class='titulos_recursos'>".$objeto['nombre_tipus_recurso']." | <span class='disponible'>Disponible</span></p>";
+			echo "<a href='reservar2.php?tipo=".$objeto['id_tipo_recurso']."' class='myButton'>Reservar</a>";
+		}else{
+			echo "<p class='titulos_recursos'>".$objeto['nombre_tipus_recurso']." | <span class='reservado'>No disponible</span></p>";
+		}
+			echo "</div>";
 	}
 	?>
+
 </body>
 </html>
