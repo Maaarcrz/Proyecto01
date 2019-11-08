@@ -17,7 +17,7 @@ if (!empty($result) && mysqli_num_rows($result)==1) {
 	//Creo una nueva sesión y defino $_SESSION['nombre']
 	session_start();
 	$_SESSION['nombre']=$user;
-	$_SESSION['id']=$row['id'];
+	$_SESSION['id']=$row['id_usuario'];
 	//Voy a la página de inicio de las reservas
 	header("Location: ../home.php");
 	}else{

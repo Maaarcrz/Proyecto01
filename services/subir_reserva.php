@@ -27,8 +27,8 @@ $fecha=date('y-m-d');
 $hora=date('h:m:s');
 include "conexion.php";
 $update=mysqli_query($conn,"UPDATE tbl_recurso set estado = 'reservado' where id_recurso=$objeto");
-$insert=mysqli_query($conn,"INSERT INTO tbl_reserva (id_recurso,id_usuario,fecha_ini, hora_ini, Fializado) values ('$objeto','$id','$fecha','$hora',0)");
-echo "$id";
+$insert=mysqli_query($conn,"INSERT INTO tbl_reserva (id_recurso,id_usuario,fecha_ini, hora_ini, Finalizado,descripcion) values ('$objeto','$id','$fecha','$hora',0,'$descripcion')");
+
 header("Location:../home.php");
 
 

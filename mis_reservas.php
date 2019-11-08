@@ -8,25 +8,29 @@
 </head>
 <body>
 
-<div class="cerrar_ses"><p class="parr_ses">Usuario | <a href="index.php">Cerrar sesión</a></p></div>
+<div style="display:flex; align-items: center">
+	    <?php
+	        include "./header.php";
+	    ?>
+	    <p style="font-family: Montserrat; margin-left: 70%"><b>Sitio personal de:</b> 
+			<?php
+				echo $_SESSION['nombre'];
+			?>
+		</p>
+	</div>
 
-<header id="main-header">
-
-<a id="logo-header" href="incidencias.php" class="imagenEveris" /><img src="./web/img/logo.png" width="200px"></a>
- 
-<nav class="cab">
-<ul>
-<li><a href="home.php">HOME</a></li>
-<li><a href="historial.php">HISTORIAL</a></li>
-<li><a href="mis_reservas.php">MIS RESERVAS</a></li>
-</ul>
-</nav>
-
-
-<button class="incidencias">Incidencias</button>
- 
-</header>
-<div class="div_img"><img src="https://cdn-e360.s3-sa-east-1.amazonaws.com/entrevista-que-debo-hacer-para-que-mi-hijo-se-adapte-al-colegio-2-large-Ph9B1hnpZd.jpg" class="imagen"></div>
+<header id="main-header" >
+		<nav class="cab">
+			<ul>
+				<li><a href="home.php"><p>Inicio</p></a></li>
+				<li><a href="general.php"><p>Historial</p></a></li>
+				<li><a href="reports.php"><p>Reports</p></a></li>
+				<li><a href="mis_reservas.php"><p>Mis reservas</p></a></li>
+			</ul>
+		</nav>
+	<button class="incidencias"><a href="incidencias.php" style="text-decoration: none;">Incidencias</a></button>
+ 	</header>
+<img src="./img/banner.jpg" class="imagen">
 <br><br><br>
 <!--
 <div class="reservar_todo">
@@ -83,9 +87,9 @@ Mis Reservas
 include "./services/conexion.php";
 
 //Selección y muestra de datos de la base de datos
-session_start();
+
 $id = $_SESSION['id'];
-$result = mysqli_query($conn,"SELECT tbl_reserva.id_reserva, tbl_recurso.nombre_recurso, tbl_reserva.descripcion,tbl_recurso.Imagen, tbl_reserva.fecha_ini FROM tbl_recurso INNER JOIN tbl_reserva ON tbl_recurso.id_recurso=tbl_reserva.id_recurso INNER JOIN tbl_usuario ON tbl_reserva.id_usuario=tbl_usuario.id_usuario WHERE tbl_usuario.id_usuario='$id' and tbl_reserva.Finalizado=0");
+$result = mysqli_query($conn,"SELECT tbl_reserva.id_reserva, tbl_recurso.nombre_recurso, tbl_reserva.descripcion,tbl_tipus_recurso.imagen_tipo_recurso, tbl_reserva.fecha_ini FROM tbl_tipus_recurso INNER JOIN tbl_recurso ON tbl_tipus_recurso.id_tipo_recurso=tbl_recurso.id_tipo_recurso INNER JOIN tbl_reserva ON tbl_recurso.id_recurso=tbl_reserva.id_recurso INNER JOIN tbl_usuario ON tbl_reserva.id_usuario=tbl_usuario.id_usuario WHERE tbl_usuario.id_usuario='$id' and tbl_reserva.Finalizado=0");
 
 if (!empty($result) && mysqli_num_rows($result)>0) {
 //Pinto el resultado.
@@ -95,7 +99,7 @@ while ($row = mysqli_fetch_array($result)){
 <div class="res_div2">
 <div class="res_i_r">
 <?php
-echo "<img src='./web/img/".$row['Imagen']."' style='width:310px'>";
+echo "<img src='./img/recursos/".$row['imagen_tipo_recurso']."' style='width:310px'>";
 echo "<p class='parr_res2'><b>Sala: </b>" .$row['nombre_recurso']."</p>";
 if ($row['descripcion']=='') {
 echo "<p class='parr_res2' style='color:red;font-weight: bold;'>No hay descripción.</p>";
@@ -105,7 +109,7 @@ echo "<p class='parr_res2' style='color:red;font-weight: bold;'>No hay descripci
 echo "<p class='parr_res2'><b>Descripción:</b> " .$row['descripcion']."</p>";
 }
 echo "<p class='parr_res2'><b>Fecha: </b> ".$row['fecha_ini']."</p>";
-echo "<a class='myButton' href='./services/finalizar.proc.php?reserva=".$row['id_reserva']."'>Finalizar</a>";
+echo "<a class='myButton' style='margin-top: 20px;' href='./services/finalizar.proc.php?reserva=".$row['id_reserva']."'>Finalizar</a>";
 ?>
 </div>
 </div>
