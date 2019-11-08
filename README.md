@@ -8,7 +8,7 @@ Reservas Casal
   
 #Curriculums:
   [Jaime Carcedo Galindo]( https://jaimecll.github.io)</br>
-  [Marc Paradell Gato] (https://Maaarcrz.github.io)</br>
-  [Elio Rojas Gómez] (https://importantelio.github.io)</br>
+  [Marc Paradell Gato]( https://Maaarcrz.github.io)</br>
+  [Elio Rojas Gómez]( https://importantelio.github.io)</br>
 
 
